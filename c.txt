@@ -1,0 +1,31 @@
+//用vector容器动态分配二维数组
+#include <iostream>  
+#include<vector>  
+using namespace std;  
+  
+int main()  
+{  
+    int row,col;  
+    cout<<"请输入行 & 列："<<endl;  
+    cin>>row>>col;  
+    //很复杂的结构：对于某些编译器，注意连空格都不可以忽略   
+    vector<vector<int> > p(row,vector<int>(col));  
+      
+    //数据输入   
+    cout<<"请逐一输入 各行各列 数据："<<endl;  
+    for(int i=0; i<row; ++i)  
+        for(int j=0; j<col; j++)  
+        {  
+            cin>>p[i][j];  
+        }  
+      
+    //数据输出   
+    cout<<"您输入的数据："<<endl;  
+    for(int i=0; i<row; ++i)  
+        for(int j=0; j<col; j++)  
+        {  
+            cout<<p[i][j]<<" ";  
+        }  
+          
+    //该方法利用的是两重的vector而无需释放   
+}  

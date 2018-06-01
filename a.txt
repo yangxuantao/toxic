@@ -1,1 +1,43 @@
-what fuck!
+//c语言动态分配二维数组
+#include <iostream>    
+#include<stdlib.h> //该头文件为malloc必须     
+using namespace std;    
+    
+int main()    
+{    
+    int row,col;    
+    int **p;     
+    cout<<"请输入开辟动态数组的行 & 列："<<endl;    
+    cin>>row>>col;   
+    //开始开辟    
+    p = (int**)malloc(row*sizeof(int*));//为数组的行开辟空间     
+    for(int i=0; i<row; ++i)    
+    {    
+        *(p+i)=(int*)malloc(col*sizeof(int));//为数组的列开辟空间     
+    }    
+        
+    //输入成员     
+    cout<<"请逐个输入动态数组 各行各列 成员："<<endl;    
+    for(int i=0; i<row; ++i)    
+        for(int j=0; j<col; ++j)    
+        {    
+            //此处不可以写成：cin>>*p[i] [j]    
+            cin>>p[i][j];    
+        }    
+            
+    //输出成员     
+    cout<<"您输入的动态数组 各行各列 成员如下："<<endl;    
+    for(int i=0; i<row; ++i)    
+        for(int j=0; j<col; ++j)    
+        {    
+            cout<<p[i][j];    
+        }    
+            
+            
+    //时刻记住：有malloc就要有free     
+    for(int i=0; i<row; ++i)    
+    {    
+        free(*(p+i));    
+     }     
+        
+    }   
